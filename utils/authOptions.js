@@ -5,8 +5,8 @@ import GoogleProvider from "next-auth/providers/google";
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
           prompt: "consent",
@@ -32,10 +32,9 @@ export const authOptions = {
           username,
           image: profile.picture,
         });
-
-        // return true to sign in user
-        return true;
       }
+      // return true to sign in user
+      return true;
     },
 
     //Modifies the session object

@@ -28,7 +28,7 @@ const Navbar = () => {
     setAuthProviders();
   }, []);
 
-  console.log(providers);
+  // console.log(providers);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
