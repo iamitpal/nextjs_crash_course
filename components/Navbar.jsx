@@ -9,8 +9,7 @@ import logo from "@/assets/images/logo-white.png";
 import profileDefault from "@/assets/images/profile.png";
 
 const Navbar = () => {
-  let { data: session } = useSession();
-  // session = true;
+  const { data: session } = useSession();
 
   const profileImage = session?.user?.image || profileDefault;
 
