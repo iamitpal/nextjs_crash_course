@@ -57,6 +57,7 @@ export const POST = async (request) => {
       //if not bookmarked, add to bookmarks
       user.bookmarks.push(propertyId);
       message = "Property added to bookmarks";
+      isBookmarked = true;
     }
 
     await user.save();
