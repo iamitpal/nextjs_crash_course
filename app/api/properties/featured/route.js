@@ -1,28 +1,16 @@
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
-import cloudinary from "@/config/cloudinary";
-import { authOptions } from "@/utils/authOptions";
-import { getSessionUser } from "@/utils/getSessionUser";
-import { getServerSession } from "next-auth/next";
 
-//GET /api/properties
+//GET /api/properties/featured
 export const GET = async (request) => {
   try {
     await connectDB();
 
-    const page = request.nextUrl.searchParams.get("page") || 1;
-    const pageSize = request.nextUrl.searchParams.get("pageSize") || 6;
-    const skip = (page - 1) * pageSize;
+    const properties = await Property.find({
+      is_featured: true,
+    });
 
-    const total = await Property.countDocuments({});
-    const properties = await Property.find({}).skip(skip).limit(pageSize);
-
-    const result = {
-      total,
-      properties,
-    };
-
-    return Response.json(result);
+    return Response.json(properties);
   } catch (error) {
     console.log(error);
     return new Response("Internal Server Error", { status: 500 });
